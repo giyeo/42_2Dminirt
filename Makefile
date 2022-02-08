@@ -14,8 +14,8 @@ all: $(NAME)
 bonus: all
 
 $(NAME): $(OBJS) $(SRC)
-	make --no-print-directory -C ./minilibx-linux
-	gcc $(OBJS) -o $(NAME) $(CFLAG) minilibx-linux/libmlx_Linux.a $(FLAG)
+	make --no-print-directory -C ../minilibx-linux
+	gcc $(OBJS) -o $(NAME) $(CFLAG) ../minilibx-linux/libmlx_Linux.a $(FLAG)
 
 %.o: %.c
 	gcc $(CFLAG) -c $< -o $@
@@ -29,6 +29,6 @@ fclean: clean minilibx_clean
 	rm -f $(NAME)
 
 minilibx_clean:
-	make clean -C ./minilibx-linux
+	make clean -C ../minilibx-linux
 
 re: fclean all
