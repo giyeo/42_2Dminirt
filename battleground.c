@@ -7,6 +7,7 @@ int		this_point_is_in_a_circle(int i, int j, int x_position, int y_position, int
 		return 1;
 	return 0; 
 }
+
 //If line cross line
 int line_line(int i, int j, t_data *img, t_cord cord1, t_cord cord2)
 {
@@ -18,7 +19,7 @@ int line_line(int i, int j, t_data *img, t_cord cord1, t_cord cord2)
 
     cord4.x = img->x_position;
     cord4.y = img->y_position;
-
+    //line intersection equation
     double uA = ( (cord4.x - cord3.x) * (cord1.y - cord3.y) - (cord4.y - cord3.y) * (cord1.x - cord3.x) )
               / ( (cord4.y - cord3.y) * (cord2.x - cord1.x) - (cord4.x - cord3.x) * (cord2.y - cord1.y) );
 
@@ -29,6 +30,7 @@ int line_line(int i, int j, t_data *img, t_cord cord1, t_cord cord2)
         return 1;
     return 0;
 }
+
 //create lines
 t_cord  *assign_cord_line_values(void)
 {
@@ -45,15 +47,6 @@ t_cord  *assign_cord_line_values(void)
     cord[6].x = 400; cord[6].y = 500;
     cord[7].x = 500; cord[7].y = 500;
     return cord;
-}
-
-void color_by_distance_two_points(int x1, int y1, int x2, int y2, int *color)
-{
-    double d = sqrt(((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)));
-    int distance = (int)d;
-    int total_dist = 1100;
-    int result = mlx_get_hex_trgb(200 - (distance * 200 / total_dist), 200 - (distance * 200 / total_dist), 200 - (distance * 200 / total_dist));
-    *color = result;
 }
 
 int belong_to_a_object(int i, int j, int sx, int sy, int *color)
@@ -82,6 +75,15 @@ int behind_an_object(int i, int j, t_cord *cord, t_data *img, int *color)
     else
         return -1;
     return 1;
+}
+
+void color_by_distance_two_points(int x1, int y1, int x2, int y2, int *color)
+{
+    double d = sqrt(((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)));
+    int distance = (int)d;
+    int total_dist = 1100;
+    int result = mlx_get_hex_trgb(200 - (distance * 200 / total_dist), 200 - (distance * 200 / total_dist), 200 - (distance * 200 / total_dist));
+    *color = result;
 }
 
 void	draw(t_data *img)
